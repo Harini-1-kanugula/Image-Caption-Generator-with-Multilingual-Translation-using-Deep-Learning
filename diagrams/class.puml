@@ -1,0 +1,25 @@
+@startuml ImageCaptionGenerator_Class
+class FlaskApp {
+  +index(): render_template
+  +upload(): render_template
+}
+
+class CaptionGenerator {
+  -processor: BlipProcessor
+  -model: BlipForConditionalGeneration
+  +generate_caption(image_path): str
+}
+
+class TranslationService {
+  +translate_caption(caption, target_language): str
+}
+
+class HTMLTemplates {
+  +index.html
+  +result.html
+}
+
+FlaskApp --> CaptionGenerator: uses
+FlaskApp --> TranslationService: uses
+FlaskApp --> HTMLTemplates: renders
+@enduml
